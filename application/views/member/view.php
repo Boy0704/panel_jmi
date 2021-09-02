@@ -11,6 +11,7 @@
 					<th>Agen Ref</th>
 					<th>Status Agen</th>
 					<th>Kota</th>
+					<th>Pilihan</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -26,6 +27,14 @@
 					<td><?php echo $rw->agen_ref ?></td>
 					<td><?php echo $rw->is_agen ?></td>
 					<td><?php echo $rw->kota ?></td>
+					<td>
+						<?php if ($rw->is_agen == 't'): ?>
+							<a href="app/agen/<?php echo $rw->id_member ?>/y" class="btn btn-xs btn-success">Jadikan Agen</a>
+						<?php else: ?>
+							<a href="app/agen/<?php echo $rw->id_member ?>/t" class="btn btn-xs btn-danger">Batal Jadikan Agen</a>
+						<?php endif ?>
+						
+					</td>
 				</tr>
 				<?php $no++; endforeach ?>
 			</tbody>

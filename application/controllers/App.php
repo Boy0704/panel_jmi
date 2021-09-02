@@ -40,6 +40,13 @@ class App extends CI_Controller {
         }
     }
 
+    public function agen($id,$n)
+    {
+        $this->db->where('id_member', $id);
+        $this->db->update('member', array('is_agen'=>$n));
+        redirect("app/member");
+    }
+
 
     public function simulasi_investasi()
     {
