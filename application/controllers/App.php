@@ -84,6 +84,54 @@ class App extends CI_Controller {
     {
         $this->db->where('id_transaksi', $id);
         $this->db->update('transaksi_investasi', array('konfirmasi'=>$n));
+        
+        // generate jadwal transfer
+        if ($n == 'y') {
+
+            $this->db->where('id_transaksi', $id);
+            $cek_jadwal = $this->db->get('jadwal_transfer');
+            if ($cek_jadwal->num_rows() > 0) {
+                // code...
+            } else {
+                $this->db->where('id_transaksi', $id);
+                $dt_trans = $this->db->get('transaksi_investasi')->row();
+
+                if ($dt_trans->plan == 'mingguan') {
+                    $waktu = 32;
+                    $persen = 0.08;
+                } elseif($dt_trans->plan == 'bulanan') {
+                    $waktu = 12;
+                    $persen = 0.25;
+                }
+
+                $jml_trf = ($dt_trans->jumlah_investasi - $dt_trans->kode_unik) * $persen;
+                $tgl1 = $dt_trans->tanggal_transfer;
+                $xx = 7;
+                $no = 1;
+                for ($i=1; $i <= $waktu ; $i++) { 
+                    
+                    $jadwal_transfer = date('Y-m-d', strtotime('+'.$xx.' days', strtotime($tgl1)));
+                    // log_data($no.' '.$jml_trf.' '.$tgl2);
+
+                    $this->db->insert('jadwal_transfer', array(
+                        'id_transaksi' => $dt_trans->id_transaksi,
+                        'no_transaksi' => $dt_trans->no_transaksi,
+                        'id_member' => $dt_trans->id_member,
+                        'nama' => get_data('member','id_member',$dt_trans->id_member,'nama'),
+                        'jadwal_transfer' => $jadwal_transfer,
+                        'ke' => $no
+                    ));
+
+                    $xx = $xx+7;
+                    $no++;
+                }
+            }
+
+            
+        }
+
+
+
         redirect("app/investasi");
     }
 

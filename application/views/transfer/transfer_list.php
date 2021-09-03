@@ -20,11 +20,12 @@
             <tr>
                 <th>No</th>
 		<th>No Transaksi</th>
-		<th>Id Member</th>
+		<th>Member</th>
 		<th>Keterangan</th>
 		<th>Tanggal</th>
 		<th>Jam</th>
-		<th>Jumlah</th>
+        <th>Jumlah</th>
+		<th>Pembayaran Ke</th>
 		<th>Created At</th>
 		<th>Updated At</th>
 		<th>Action</th>
@@ -46,6 +47,7 @@
 			<td><?php echo $transfer->tanggal ?></td>
 			<td><?php echo $transfer->jam ?></td>
 			<td><?php echo number_format($transfer->jumlah) ?></td>
+            <td><?php echo $transfer->ke ?></td>
 			<td><?php echo $transfer->created_at ?></td>
 			<td><?php echo $transfer->updated_at ?></td>
 			<td style="text-align:center" width="200px">

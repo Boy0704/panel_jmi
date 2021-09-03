@@ -80,7 +80,8 @@ class Transfer extends CI_Controller
 	    'keterangan' => set_value('keterangan'),
 	    'tanggal' => set_value('tanggal'),
 	    'jam' => set_value('jam'),
-	    'jumlah' => set_value('jumlah'),
+        'jumlah' => set_value('jumlah'),
+	    'ke' => set_value('ke'),
 	    'created_at' => set_value('created_at'),
 	    'updated_at' => set_value('updated_at'),
 	);
@@ -100,11 +101,13 @@ class Transfer extends CI_Controller
 		'keterangan' => $this->input->post('keterangan',TRUE),
 		'tanggal' => $this->input->post('tanggal',TRUE),
 		'jam' => $this->input->post('jam',TRUE),
-		'jumlah' => $this->input->post('jumlah',TRUE),
+        'jumlah' => $this->input->post('jumlah',TRUE),
+		'ke' => $this->input->post('ke',TRUE),
 		'created_at' => get_waktu(),
 	    );
 
             $this->Transfer_model->insert($data);
+
             $this->session->set_flashdata('message', 'Create Record Success');
             redirect(site_url('transfer'));
         }
@@ -126,7 +129,8 @@ class Transfer extends CI_Controller
 		'keterangan' => set_value('keterangan', $row->keterangan),
 		'tanggal' => set_value('tanggal', $row->tanggal),
 		'jam' => set_value('jam', $row->jam),
-		'jumlah' => set_value('jumlah', $row->jumlah)
+        'jumlah' => set_value('jumlah', $row->jumlah),
+		'ke' => set_value('ke', $row->ke)
 	    );
             $this->load->view('v_index', $data);
         } else {

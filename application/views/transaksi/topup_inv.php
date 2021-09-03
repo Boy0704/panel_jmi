@@ -1,5 +1,11 @@
 <div class="row">
 	<div class="col-md-12">
+		<p class="text-danger">Silahkan Transfer Terlebih Dahulu Ke </p>
+		<h2>No Rekening : 11000.1214.1369</h2>
+		<h2>Atas nama JAYA MANDIRI INVESTAMA</h2>
+		<h2>Bank Mandiri</h2>
+	</div>
+	<div class="col-md-12">
 		<form action="" method="POST" enctype="multipart/form-data">
 			<div class="form-group">
 				<label>No Transaksi</label>

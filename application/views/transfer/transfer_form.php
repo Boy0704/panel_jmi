@@ -2,7 +2,7 @@
         <form action="<?php echo $action; ?>" method="post">
 	    <div class="form-group">
             <label for="varchar">No Transaksi <?php echo form_error('no_transaksi') ?></label>
-            <input type="text" class="form-control" name="no_transaksi" id="no_transaksi" placeholder="No Transaksi" value="<?php echo $this->uri->segment(3); ?>" />
+            <input type="text" class="form-control" name="no_transaksi" id="no_transaksi" placeholder="No Transaksi" value="<?php echo $this->uri->segment(3); ?>" readonly/>
         </div>
 	    <div class="form-group">
             <label for="int">Member <?php echo form_error('id_member') ?></label>
@@ -29,16 +29,13 @@
             <label for="int">Jumlah <?php echo form_error('jumlah') ?></label>
             <input type="text" class="form-control" name="jumlah" id="jumlah" placeholder="Jumlah" value="<?php echo $jumlah; ?>" />
         </div>
-	    <div class="form-group">
-            <label for="datetime">Created At <?php echo form_error('created_at') ?></label>
-            <input type="text" class="form-control" name="created_at" id="created_at" placeholder="Created At" value="<?php echo $created_at; ?>" />
+
+        <div class="form-group">
+            <label for="int">Pembayaran ke- </label>
+            <input type="number" class="form-control" name="ke" id="ke" placeholder="Ex: 1" value="<?php echo $ke; ?>" required/>
         </div>
-	    <div class="form-group">
-            <label for="datetime">Updated At <?php echo form_error('updated_at') ?></label>
-            <input type="text" class="form-control" name="updated_at" id="updated_at" placeholder="Updated At" value="<?php echo $updated_at; ?>" />
-        </div>
+	    
 	    <input type="hidden" name="id_transfer" value="<?php echo $id_transfer; ?>" /> 
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 
-	    <a href="<?php echo site_url('transfer') ?>" class="btn btn-default">Cancel</a>
 	</form>
    
