@@ -254,6 +254,7 @@ class Api extends REST_Controller {
             ORDER BY
                 a.created_at DESC
         ";
+        $query = $this->db->query($sql)
         $dt = $this->db->query($sql)->result();
         foreach ($dt as $rw) {
             array_push($data, array(
@@ -264,7 +265,7 @@ class Api extends REST_Controller {
             ));
         }
 
-        if ($dt) {
+        if ($query->num_rows() > 0) {
             $message = array(
                 'kode' => '200',
                 'message' => 'berhasil',
