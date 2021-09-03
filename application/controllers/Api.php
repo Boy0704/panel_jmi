@@ -265,20 +265,11 @@ class Api extends REST_Controller {
             ));
         }
 
-        if ($query->num_rows() > 0) {
-            $message = array(
-                'kode' => '200',
-                'message' => 'berhasil',
-                'data' => $data
-            );
-        } else {
-            $condition = array('data'=>"kosong");
-            $message = array(
-                'kode' => '200',
-                'message' => 'gagal',
-                'data' => $condition
-            );
-        }
+        $message = array(
+            'kode' => '200',
+            'message' => 'berhasil',
+            'data' => $data
+        );
 
         $this->response($message, 200);
     }
