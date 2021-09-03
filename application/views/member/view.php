@@ -24,7 +24,7 @@
 					<td><?php echo $rw->no_telp ?></td>
 					<td><?php echo $rw->password ?></td>
 					<td><?php echo $rw->no_rekening ?></td>
-					<td><?php echo $rw->agen_ref ?></td>
+					<td><?php echo get_data('member','no_telp',$rw->agen_ref,'nama') ?></td>
 					<td><?php echo $rw->is_agen ?></td>
 					<td><?php echo $rw->kota ?></td>
 					<td>
