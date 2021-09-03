@@ -117,6 +117,7 @@ class App extends CI_Controller {
                         'id_transaksi' => $dt_trans->id_transaksi,
                         'no_transaksi' => $dt_trans->no_transaksi,
                         'id_member' => $dt_trans->id_member,
+                        'nominal' => $jml_trf,
                         'nama' => get_data('member','id_member',$dt_trans->id_member,'nama'),
                         'jadwal_transfer' => $jadwal_transfer,
                         'ke' => $no
