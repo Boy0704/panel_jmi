@@ -273,7 +273,7 @@ class Api extends REST_Controller {
         } else {
             $condition = array('data'=>"kosong");
             $message = array(
-                'kode' => '404',
+                'kode' => '200',
                 'message' => 'gagal',
                 'data' => $condition
             );
