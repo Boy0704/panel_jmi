@@ -150,7 +150,8 @@ class Api extends REST_Controller {
 
             $this->response($message, 200);
             exit();
-        } elseif ($cek_agen->num_rows() > 0) {
+        }
+        if ($cek_agen->num_rows() > 0) {
             $message = array(
                 'kode' => '200',
                 'message' => 'Agen Ref '.$decoded_data->username.' tidak ditemukan, silahkan masukkan no telp agen terdaftar!',
@@ -159,10 +160,7 @@ class Api extends REST_Controller {
 
             $this->response($message, 200);
             exit();
-        }  
-
-        
-              
+        }        
 
         $data = array(
             'nama' => $decoded_data->nama,
