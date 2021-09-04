@@ -140,7 +140,6 @@ class Api extends REST_Controller {
         $cek_agen = $this->db->get_where('member', ['no_telp' => $decoded_data->agen_ref]);
 
         if ($cek_username->num_rows() > 0) {
-            log_data('iya');
             $condition = array('daftar'=>'gagal');
             $message = array(
                 'kode' => '200',
