@@ -139,6 +139,8 @@ class Api extends REST_Controller {
         $condition = array('daftar'=>'gagal');
 
         $cek_username = $this->db->get_where('member', ['no_telp' => $decoded_data->username]);
+        $cek_agen = $this->db->get_where('member', ['no_telp' => $decoded_data->agen_ref]);
+
         if ($cek_username->num_rows() > 0) {
             $message = array(
                 'kode' => '200',
@@ -148,10 +150,7 @@ class Api extends REST_Controller {
 
             $this->response($message, 200);
             exit();
-        }
-
-        $cek_agen = $this->db->get_where('member', ['no_telp' => $decoded_data->agen_ref]);
-        if ($cek_agen->num_rows() > 0) {
+        } elseif ($cek_agen->num_rows() > 0) {
             $message = array(
                 'kode' => '200',
                 'message' => 'Agen Ref '.$decoded_data->username.' tidak ditemukan, silahkan masukkan no telp agen terdaftar!',
@@ -160,7 +159,10 @@ class Api extends REST_Controller {
 
             $this->response($message, 200);
             exit();
-        }        
+        }  
+
+        
+              
 
         $data = array(
             'nama' => $decoded_data->nama,
