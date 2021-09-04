@@ -135,6 +135,9 @@ class Api extends REST_Controller {
 
         $data = file_get_contents("php://input");
         $decoded_data = json_decode($data);
+
+        $condition = array('daftar'=>'gagal');
+
         $cek_username = $this->db->get_where('member', ['no_telp' => $decoded_data->username]);
         if ($cek_username->num_rows() > 0) {
             $message = array(
@@ -146,7 +149,7 @@ class Api extends REST_Controller {
             $this->response($message, 200);
             exit();
         }
-        
+
         $cek_agen = $this->db->get_where('member', ['no_telp' => $decoded_data->agen_ref]);
         if ($cek_agen->num_rows() > 0) {
             $message = array(
