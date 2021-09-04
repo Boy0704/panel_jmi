@@ -136,49 +136,45 @@ class Api extends REST_Controller {
         $data = file_get_contents("php://input");
         $decoded_data = json_decode($data);
 
-        $condition = array('daftar'=>'gagal');
-
         $cek_username = $this->db->get_where('member', ['no_telp' => $decoded_data->username]);
         $cek_agen = $this->db->get_where('member', ['no_telp' => $decoded_data->agen_ref]);
 
         if ($cek_username->num_rows() > 0) {
+            log_data('iya');
+            $condition = array('daftar'=>'gagal');
             $message = array(
                 'kode' => '200',
                 'message' => 'No Telp '.$decoded_data->username.' sudah ada!',
                 'data' => [$condition]
             );
-
-            $this->response($message, 200);
-            exit();
-        }
-        if ($cek_agen->num_rows() > 0) {
+        } elseif ($cek_agen->num_rows() > 0) {
+            $condition = array('daftar'=>'gagal');
             $message = array(
                 'kode' => '200',
                 'message' => 'Agen Ref '.$decoded_data->username.' tidak ditemukan, silahkan masukkan no telp agen terdaftar!',
                 'data' => [$condition]
             );
+        } else {
+            $data = array(
+                'nama' => $decoded_data->nama,
+                'no_rekening' => $decoded_data->no_rekening,
+                'kota' => $decoded_data->kota,
+                'agen_ref' => $decoded_data->agen_ref,
+                'no_telp' => $decoded_data->username,
+                'password' => $decoded_data->password,
+                'created_at' => get_waktu(),
+            );
+            $user = $this->db->insert('member', $data);
+            $condition = array('daftar'=>'berhasil');
+            $message = array(
+                'kode' => '200',
+                'message' => 'Pendaftaran Berhasil Silahkan Login !',
+                'data' => [$condition]
+            );
 
-            $this->response($message, 200);
-            exit();
-        }        
+        }    
 
-        $data = array(
-            'nama' => $decoded_data->nama,
-            'no_rekening' => $decoded_data->no_rekening,
-            'kota' => $decoded_data->kota,
-            'agen_ref' => $decoded_data->agen_ref,
-            'no_telp' => $decoded_data->username,
-            'password' => $decoded_data->password,
-            'created_at' => get_waktu(),
-        );
-        $user = $this->db->insert('member', $data);
-        $condition = array('daftar'=>'berhasil');
-        $message = array(
-            'kode' => '200',
-            'message' => 'Pendaftaran Berhasil Silahkan Login !',
-            'data' => [$condition]
-        );
-
+        
         $this->response($message, 200);
         
     }
