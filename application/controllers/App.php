@@ -154,6 +154,11 @@ class App extends CI_Controller {
     public function jaringan_member($id_member)
     {
         // code...
+        ?>
+        <script type="text/javascript">
+            WebAppInterface.showToast("Maaf kamu bukan agen !");
+        </script>
+        <?php
     }
 
     public function pengembangan()
