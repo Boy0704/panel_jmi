@@ -6,7 +6,7 @@
         </div>
 	    <div class="form-group">
             <label for="int">Member <?php echo form_error('id_member') ?></label>
-            <select class="form-control" name="id_member">
+            <select class="form-control select2" name="id_member">
                 <option value="">Pilih Member</option>
                 <?php foreach ($this->db->get('member')->result() as $rw): ?>
                     <option value="<?php echo $rw->id_member ?>"><?php echo $rw->nama ?></option>
@@ -29,7 +29,14 @@
             <label for="int">Jumlah <?php echo form_error('jumlah') ?></label>
             <input type="text" class="form-control" name="jumlah" id="jumlah" placeholder="Jumlah" value="<?php echo $jumlah; ?>" />
         </div>
-
+        <div class="form-group">
+            <label>Jenis Transfer</label>
+            <select name="jenis" class="form-control" required="">
+                <option value="">Pilih</option>
+                <option value="member">Member</option>
+                <option value="bonus agen">Bonus Agen</option>
+            </select>
+        </div>
         <div class="form-group">
             <label for="int">Pembayaran ke- </label>
             <input type="number" class="form-control" name="ke" id="ke" placeholder="Ex: 1" value="<?php echo $ke; ?>" required/>

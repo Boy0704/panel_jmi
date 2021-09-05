@@ -30,6 +30,7 @@
         <li><a href="app"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
         <li><a href="app/member"><i class="fa fa-clone"></i> <span>Member </span></a></li></li>
         <li><a href="app/investasi"><i class="fa fa-clone"></i> <span>Investasi Masuk </span></a></li></li>
+        <li><a href="reward"><i class="fa fa-clone"></i> <span>Reward </span></a></li></li>
 
         <li><a href="app/cetak_rekap"><i class="fa fa-print"></i> <span>Cetak Rekap </span></a></li></li>
 

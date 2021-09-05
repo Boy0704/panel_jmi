@@ -136,6 +136,26 @@ class App extends CI_Controller {
         redirect("app/investasi");
     }
 
+    public function detail_transaksi($no_transaksi)
+    {
+        // code...
+    }
+
+    public function edit_profil($id_member)
+    {
+        // code...
+    }
+
+    public function reward($id_member)
+    {
+        // code...
+    }
+
+    public function jaringan_member($id_member)
+    {
+        // code...
+    }
+
     public function pengembangan()
     {
         $this->session->set_flashdata('message', alert_biasa('Menu masih dalam tahap pengembangan !','warning'));

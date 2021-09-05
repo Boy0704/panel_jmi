@@ -52,8 +52,8 @@
 			<td><?php echo $transfer->updated_at ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
-				echo anchor(site_url('transfer/update/'.$transfer->id_transfer),'<span class="label label-info">Ubah</span>'); 
-				echo ' | '; 
+				// echo anchor(site_url('transfer/update/'.$transfer->id_transfer),'<span class="label label-info">Ubah</span>'); 
+				// echo ' | '; 
 				echo anchor(site_url('transfer/delete/'.$transfer->id_transfer),'<span class="label label-danger">Hapus</span>','onclick="javasciprt: return confirm(\'Are You Sure ?\')"'); 
 				?>
 			</td>

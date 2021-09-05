@@ -102,14 +102,22 @@ class Transfer extends CI_Controller
 		'tanggal' => $this->input->post('tanggal',TRUE),
 		'jam' => $this->input->post('jam',TRUE),
         'jumlah' => $this->input->post('jumlah',TRUE),
-		'ke' => $this->input->post('ke',TRUE),
+        'ke' => $this->input->post('ke',TRUE),
+		'jenis' => $this->input->post('jenis',TRUE),
 		'created_at' => get_waktu(),
 	    );
 
             $this->Transfer_model->insert($data);
 
+            $jenis = $this->input->post('jenis');
+            if ($jenis  == 'member') {
+                $this->db->where('no_transaksi', $this->input->post('no_transaksi'));
+                $this->db->where('ke', $this->input->post('ke'));
+                $this->db->update('jadwal_transfer', array('is_done' => 'y', 'updated_at' => get_waktu()));
+            }
+
             $this->session->set_flashdata('message', 'Create Record Success');
-            redirect(site_url('transfer'));
+            redirect(site_url('transfer/index/'.$this->input->post('no_transaksi',TRUE)));
         }
     }
     
@@ -130,7 +138,8 @@ class Transfer extends CI_Controller
 		'tanggal' => set_value('tanggal', $row->tanggal),
 		'jam' => set_value('jam', $row->jam),
         'jumlah' => set_value('jumlah', $row->jumlah),
-		'ke' => set_value('ke', $row->ke)
+        'ke' => set_value('ke', $row->ke),
+		'jenis' => set_value('jenis', $row->jenis)
 	    );
             $this->load->view('v_index', $data);
         } else {
@@ -152,7 +161,9 @@ class Transfer extends CI_Controller
 		'keterangan' => $this->input->post('keterangan',TRUE),
 		'tanggal' => $this->input->post('tanggal',TRUE),
 		'jam' => $this->input->post('jam',TRUE),
-		'jumlah' => $this->input->post('jumlah',TRUE),
+        'jumlah' => $this->input->post('jumlah',TRUE),
+        'ke' => $this->input->post('ke',TRUE),
+		'jenis' => $this->input->post('jenis',TRUE),
 		'updated_at' => get_waktu(),
 	    );
 
@@ -166,13 +177,18 @@ class Transfer extends CI_Controller
     {
         $row = $this->Transfer_model->get_by_id($id);
 
+        $no_transaksi = $row->no_transaksi;
         if ($row) {
+            $this->db->where('no_transaksi', $row->no_transaksi);
+            $this->db->where('ke', $row->ke);
+            $this->db->update('jadwal_transfer', array('is_done' => 't', 'updated_at' => get_waktu()));
+
             $this->Transfer_model->delete($id);
             $this->session->set_flashdata('message', 'Delete Record Success');
-            redirect(site_url('transfer'));
+            redirect(site_url('transfer/index/'.$no_transaksi));
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
-            redirect(site_url('transfer'));
+            redirect(site_url('transfer/index/'.$no_transaksi));
         }
     }
 

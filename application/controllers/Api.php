@@ -236,6 +236,7 @@ class Api extends REST_Controller {
         $sql = "
             SELECT
                 a.tanggal,
+                a.no_transaksi,
                 a.kat,
                 a.keterangan,
                 a.nilai,
@@ -244,6 +245,7 @@ class Api extends REST_Controller {
                 (
                 SELECT
                     id_member AS id,
+                    no_transaksi,
                     tanggal_transfer as tanggal,
                     'keluar' AS kat,
                     plan AS keterangan,
@@ -253,6 +255,7 @@ class Api extends REST_Controller {
                     transaksi_investasi where konfirmasi='y' and id_member='$decoded_data->id_member' UNION
                 SELECT
                     id_member AS id,
+                    no_transaksi,
                     tanggal,
                     'masuk' AS kat,
                     keterangan,
