@@ -142,15 +142,15 @@ class Api extends REST_Controller {
         if ($cek_username->num_rows() > 0) {
             $condition = array('daftar'=>'gagal');
             $message = array(
-                'kode' => '200',
+                'kode' => '404',
                 'message' => 'No Telp '.$decoded_data->username.' sudah ada!',
                 'data' => [$condition]
             );
-        } elseif ($cek_agen->num_rows() > 0) {
+        } elseif ($cek_agen->num_rows() == 0) {
             $condition = array('daftar'=>'gagal');
             $message = array(
-                'kode' => '200',
-                'message' => 'Agen Ref '.$decoded_data->username.' tidak ditemukan, silahkan masukkan no telp agen terdaftar!',
+                'kode' => '404',
+                'message' => 'Agen '.$decoded_data->agen_ref.' tidak ditemukan, silahkan masukkan no telp agen terdaftar!',
                 'data' => [$condition]
             );
         } else {
