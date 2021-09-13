@@ -211,6 +211,36 @@ class App extends CI_Controller {
             $this->load->view('v_index', $data);
         }
     }
+
+    public function daftar_member($no_telp_agen)
+    {
+        if ($_POST) {
+            $this->db->where('no_telp', $this->input->post('no_telp'));
+            $cek = $this->db->get('member');
+
+            if ($cek->num_rows() > 0) {
+                ?>
+                <script type="text/javascript">
+                    alert("No Telp Sudah Ada");
+                    window.location="<?php echo base_url() ?>app/daftar_member/<?php echo $no_telp_agen ?>";
+                </script>
+                <?php
+            } else {
+                $this->db->insert('member', $_POST);
+
+                ?>
+                <script type="text/javascript">
+                    alert("Pendaftaran berhasil, silahkan kamu login");
+                    window.location="https://play.google.com/store/apps/details?id=com.apps.jmi"
+                </script>
+                <?php
+            }
+        } else {
+            $this->load->view('page_lain/daftar_member');
+        }
+
+        
+    }
     
 
     public function hasil($value='')
