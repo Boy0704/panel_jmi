@@ -162,7 +162,6 @@ class Reward extends CI_Controller
 	$this->form_validation->set_rules('target', 'target', 'trim|required');
 	$this->form_validation->set_rules('bonus_tunai', 'bonus tunai', 'trim|required');
 	$this->form_validation->set_rules('keterangan', 'keterangan', 'trim|required');
-	$this->form_validation->set_rules('gambar', 'gambar', 'trim|required');
 
 	$this->form_validation->set_rules('id_reward', 'id_reward', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
