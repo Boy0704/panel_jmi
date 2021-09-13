@@ -9,6 +9,7 @@ $data = $this->db->get_where('transaksi_investasi', ['no_transaksi' => $this->ur
 
 	<div class="col-md-12" style="margin: 20px;">
 			<h3>Target Reward Bulan INI</h3>
+			<div class="table-responsive">
 		<table class="table table-bordered">
 			<thead>
 				<tr>
@@ -27,9 +28,9 @@ $data = $this->db->get_where('transaksi_investasi', ['no_transaksi' => $this->ur
 				foreach ($this->db->get('reward')->result() as $rw): ?>
 					<tr>
 						<td><?php echo $no ?></td>
-						<td><img src="image/reward/<?php echo $rw->gambar ?>" style="width: 100px;"></td>
+						<td><img src="<?php echo base_url() ?>image/reward/<?php echo $rw->gambar ?>" style="width: 100px;"></td>
 						<td><?php echo number_format($rw->target) ?></td>
-						<td><?php echo $rw->ket ?></td>
+						<td><?php echo $rw->keterangan ?></td>
 						<td>
 							
 							<?php 
@@ -53,6 +54,7 @@ $data = $this->db->get_where('transaksi_investasi', ['no_transaksi' => $this->ur
 				<?php $no++; endforeach ?>
 			</tbody>
 		</table>
+		</div>
 	</div>
 </div>
 
