@@ -275,7 +275,8 @@ class Api extends REST_Controller {
                 'jenis' => $rw->kat,
                 'judul' => $rw->keterangan,
                 'tanggal' => $rw->created_at,
-                'nominal' => number_format($rw->nilai)
+                'nominal' => number_format($rw->nilai),
+                'no_transaksi' => $rw->no_transaksi
             ));
         }
 
