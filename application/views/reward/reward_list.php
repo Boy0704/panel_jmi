@@ -44,8 +44,8 @@
                 ?>
                 <tr>
 			<td width="80px"><?php echo ++$start ?></td>
-			<td><?php echo $reward->target ?></td>
-			<td><?php echo $reward->bonus_tunai ?></td>
+			<td><?php echo number_format($reward->target) ?></td>
+			<td><?php echo number_format($reward->bonus_tunai) ?></td>
 			<td><?php echo $reward->keterangan ?></td>
 			<td><img src="image/reward/<?php echo $reward->gambar ?>" style="width: 100px;"></td>
 			<td style="text-align:center" width="200px">
