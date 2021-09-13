@@ -6,7 +6,7 @@
 		<form action="" method="POST">
 			<div class="form-group">
 				<label>Agen Ref</label>
-				<input type="text" class="form-control" name="agen_ref" value="<?php $this->uri->segment(3) ?>" readonly="">
+				<input type="text" class="form-control" name="agen_ref" value="<?php echo $this->uri->segment(3) ?>" readonly="">
 			</div>
 			<div class="form-group">
 				<label>Nama Agen</label>
