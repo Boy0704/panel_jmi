@@ -1,9 +1,12 @@
 <?php include 'header.php'; ?>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
+
+
 <div class="row">
 	<div class="col-md-12" style="margin-top: 10px;">
-
-		<button class="btn btn-success btn-block" onclick="copy()">Copy Link Referal Agen</button>
+		<button class="btn btn-success btn-block" data-clipboard-action="copy"
+      data-clipboard-target="#myInput">Copy Link Referal Agen</button>
 
 		<table class="table table-bordered">
 			<thead>
@@ -39,20 +42,18 @@
 	</div>
 </div>
 
-<script type="text/javascript">
-	function copy() {
-		/* Get the text field */
-	  var copyText = document.getElementById("myInput");
+<script>
+      var clipboard = new ClipboardJS('.btn');
 
-	  /* Select the text field */
-	  copyText.select();
-	  copyText.setSelectionRange(0, 99999); /* For mobile devices */
+      clipboard.on('success', function (e) {
+        console.log(e);
+      });
 
-	  /* Copy the text inside the text field */
-	  navigator.clipboard.writeText(copyText.value);
-	}
+      clipboard.on('error', function (e) {
+        console.log(e);
+      });
+    </script>
 
 
-</script>
 
 <?php include 'footer.php' ?>
