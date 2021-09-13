@@ -3,67 +3,54 @@
 <?php 
 $data = $this->db->get_where('transaksi_investasi', ['no_transaksi' => $this->uri->segment(3)])->row();
  ?>
-<div class="row">
-	<div class="col-md-12" style="margin: 20px;">
-		<table class="table table-bordered">
-			<tr>
-				<td>No Transaksi</td>
-				<td>:</td>
-				<td><?php echo $data->no_transaksi ?></td>
-			</tr>
-			<tr>
-				<td>Jumlah Investasi</td>
-				<td>:</td>
-				<td><?php echo $data->jumlah_investasi ?></td>
-			</tr>
-			<tr>
-				<td>Tgl Transfer</td>
-				<td>:</td>
-				<td><?php echo $data->tanggal_transfer ?></td>
-			</tr>
-			<tr>
-				<td>Plan</td>
-				<td>:</td>
-				<td><?php echo $data->plan ?></td>
-			</tr>
-		</table>
-	</div>
-</div>
+
 
 <div class="row">
 
 	<div class="col-md-12" style="margin: 20px;">
-			<h3>Detail Transfer</h3>
+			<h3>Target Reward Bulan INI</h3>
 		<table class="table table-bordered">
 			<thead>
 				<tr>
 					<th>No</th>
-					<th>Jadwal Transfer</th>
-					<th>Nominal</th>
+					<th>Gambar</th>
+					<th>Target</th>
+					<th>Ket</th>
+					<th>Target Dicapai</th>
+					<th>Sisa Target</th>
 					<th>Status</th>
 				</tr>
 			</thead>
 			<tbody>
 				<?php 
-				$this->db->order_by('ke', 'asc');
-				foreach ($this->db->get_where('jadwal_transfer', ['no_transaksi'=>$data->no_transaksi])->result() as $rw): ?>
+				$no = 1;
+				foreach ($this->db->get('reward')->result() as $rw): ?>
 					<tr>
-						<td><?php echo $rw->ke ?></td>
-						<td><?php echo $rw->jadwal_transfer ?></td>
-						<td><?php echo number_format($rw->nominal) ?></td>
+						<td><?php echo $no ?></td>
+						<td><img src="image/reward/<?php echo $rw->gambar ?>" style="width: 100px;"></td>
+						<td><?php echo number_format($rw->target) ?></td>
+						<td><?php echo $rw->ket ?></td>
+						<td>
+							
+							<?php 
+							$target_dicapai = 0;
+
+							echo $target_dicapai;
+
+							 ?>
+
+						</td>
+
 						<td>
 							<?php 
-							$status = $this->db->get_where('transfer', ['no_transaksi'=>$rw->no_transaksi,'ke'=>$rw->ke]);
-							
+							echo number_format($rw->target)
 							 ?>
-							<?php if ($status->num_rows() > 0): ?>
-								<span class="badge badge-success">Selesai</span>
-							<?php else: ?>
-								<span class="badge badge-info">Menunggu</span>
-							<?php endif ?>
+						</td>
+						<td>
+							<span class="badge badge-info">Belum Tercapai</span>
 						</td>
 					</tr>
-				<?php endforeach ?>
+				<?php $no++; endforeach ?>
 			</tbody>
 		</table>
 	</div>

@@ -148,7 +148,7 @@ class App extends CI_Controller {
 
     public function reward($id_member)
     {
-        // code...
+        $this->load->view('page_lain/reward');
     }
 
     public function jaringan_member($id_member)
@@ -197,9 +197,19 @@ class App extends CI_Controller {
         echo json_encode($message);
     }
 
-    public function cetak()
+    public function cetak_rekap()
     {
-        $this->load->view('cetak');
+        if ($_POST) {
+            $tanggal = $this->input->post('tanggal');
+            $data['tanggal'] = $tanggal;
+            $this->load->view('cetak/cetak', $data);
+        } else {
+            $data = array (
+                'judul_page' => 'Cetak',
+                'konten' => 'cetak/cetak_rekap',
+            );
+            $this->load->view('v_index', $data);
+        }
     }
     
 
