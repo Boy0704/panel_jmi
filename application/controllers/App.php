@@ -138,12 +138,12 @@ class App extends CI_Controller {
 
     public function detail_transaksi($no_transaksi)
     {
-        // code...
+        $this->load->view('page_lain/detail_transaksi');
     }
 
     public function edit_profil($id_member)
     {
-        // code...
+        $this->load->view('page_lain/edit_profil');
     }
 
     public function reward($id_member)
@@ -153,12 +153,17 @@ class App extends CI_Controller {
 
     public function jaringan_member($id_member)
     {
-        // code...
-        ?>
-        <script type="text/javascript">
-            WebAppInterface.showToast("Maaf kamu bukan agen !");
-        </script>
-        <?php
+        $cek = $this->db->get_where('member', ['id_member'=> $id_member ]);
+        if ($cek->row()->is_agen == 't') {
+            ?>
+            <script type="text/javascript">
+                WebAppInterface.showToast("Maaf kamu bukan agen !");
+            </script>
+            <?php
+        } else {
+            $this->load->view('page_lain/jaringan_member');
+        }
+
     }
 
     public function pengembangan()

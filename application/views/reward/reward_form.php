@@ -1,5 +1,5 @@
 
-        <form action="<?php echo $action; ?>" method="post">
+        <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
 	    <div class="form-group">
             <label for="int">Target <?php echo form_error('target') ?></label>
             <input type="text" class="form-control" name="target" id="target" placeholder="Target" value="<?php echo $target; ?>" />
@@ -14,7 +14,7 @@
         </div>
 	    <div class="form-group">
             <label for="varchar">Gambar <?php echo form_error('gambar') ?></label>
-            <input type="text" class="form-control" name="gambar" id="gambar" placeholder="Gambar" value="<?php echo $gambar; ?>" />
+            <input type="file" class="form-control" name="gambar" id="gambar" placeholder="Gambar" value="<?php echo $gambar; ?>" />
             <input type="hidden" name="foto_old" value="<?php echo $gambar ?>">
             <div>
                 <?php if ($gambar != ''): ?>
