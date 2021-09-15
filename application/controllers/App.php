@@ -71,6 +71,18 @@ class App extends CI_Controller {
         $this->load->view('v_index', $data);
     }
 
+    public function hapus_member($id_member)
+    {
+        $this->db->where('id_member', $id_member);
+        $this->db->delete('member');
+        ?>
+        <script type="text/javascript">
+            alert("Data member berhasil dihapus !");
+            window.location="<?php echo base_url() ?>app/member"
+        </script>
+        <?php
+    }
+
     public function investasi()
     {
         $data = array (

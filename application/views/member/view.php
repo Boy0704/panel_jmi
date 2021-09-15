@@ -1,5 +1,6 @@
 <div class="row">
 	<div class="col-md-12">
+		<div class="table-responsive">
 		<table class="table table-bordered" id="example2">
 			<thead>
 				<tr>
@@ -33,11 +34,14 @@
 						<?php else: ?>
 							<a href="app/agen/<?php echo $rw->id_member ?>/t" class="btn btn-xs btn-danger">Batal Jadikan Agen</a>
 						<?php endif ?>
+
+						<a href="app/hapus_member/<?php echo $rw->id_member ?>" onclick="javasciprt: return confirm('Yakin hapus member ini ?')" class="label label-danger" >Hapus</a>
 						
 					</td>
 				</tr>
 				<?php $no++; endforeach ?>
 			</tbody>
 		</table>
+		</div>
 	</div>
 </div>
