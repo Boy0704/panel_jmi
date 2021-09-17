@@ -13,6 +13,7 @@
 				<tr>
 					<th>No.</th>
 					<th>Nama</th>
+					<th>No HP</th>
 					<th>Total Investasi</th>
 				</tr>
 			</thead>
@@ -26,6 +27,7 @@
 				<tr>
 					<td><?php echo $no ?></td>
 					<td><?php echo $rw->nama ?></td>
+					<td><?php echo $rw->no_telp ?></td>
 					<td>
 						<?php 
 						$sql = "SELECT sum(jumlah_investasi) as total FROM transaksi_investasi WHERE id_member='$rw->id_member' and konfirmasi='y' ";
