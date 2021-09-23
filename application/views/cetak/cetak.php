@@ -4,6 +4,7 @@ header("Content-Disposition: attachment; filename=Cetak_Jadwal_Transfer.xls");
 ?>
 <table border="1">
 	<tr>
+		<td><b>No</b></td>
 		<td><b>Nama</b></td>
 		<td><b>No Rekening</b></td>
 		<td><b>Jadwal Tranfer</b></td>
