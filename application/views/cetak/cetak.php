@@ -17,7 +17,7 @@ header("Content-Disposition: attachment; filename=Cetak_Jadwal_Transfer.xls");
 			<td><?php echo $no ?></td>
 			<td><?php echo $rw->nama ?></td>
 			<td><?php echo get_data('member','id_member',$rw->id_member,'no_rekening') ?></td>
-			<td><?php echo $rw->jadwal_tranfer ?></td>
+			<td><?php echo $rw->jadwal_transfer ?></td>
 			<td><?php echo $rw->nominal ?></td>
 		</tr>
 	<?php $no++; endforeach ?>
