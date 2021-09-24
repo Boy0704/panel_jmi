@@ -5,7 +5,7 @@
 		<?php 
 		$data = $this->db->get_where('member', ['id_member'=>$this->uri->segment(3)])->row();
 		 ?>
-		<form>
+		<form action="" method="POST">
 			<div class="form-group">
 				<label>Nama Lengkap</label>
 				<input type="text" class="form-control" name="nama" value="<?php echo $data->nama ?>">
@@ -13,6 +13,10 @@
 			<div class="form-group">
 				<label>No Rekening</label>
 				<input type="text" class="form-control" name="no_rekening" value="<?php echo $data->no_rekening ?>">
+			</div>
+			<div class="form-group">
+				<label>Nama Bank</label>
+				<input type="text" class="form-control" name="nama_bank" value="<?php echo $data->nama_bank ?>">
 			</div>
 			<div class="form-group">
 				<label>Kota</label>

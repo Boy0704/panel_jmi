@@ -155,7 +155,18 @@ class App extends CI_Controller {
 
     public function edit_profil($id_member)
     {
-        $this->load->view('page_lain/edit_profil');
+        if ($_POST) {
+            $this->db->where('id_member', $id_member);
+            $this->db->update('member', $_POST);
+            ?>
+            <script type="text/javascript">
+                WebAppInterface.showToast("Data Berhasil diupdate !");
+            </script>
+            <?php
+        } else {
+            $this->load->view('page_lain/edit_profil');    
+        }
+        
     }
 
     public function reward($id_member)

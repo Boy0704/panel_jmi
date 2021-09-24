@@ -4,6 +4,12 @@
 		<h2>No Rekening : 11000.1214.1369</h2>
 		<h2>Atas nama JAYA MANDIRI INVESTAMA</h2>
 		<h2>Bank Mandiri</h2>
+
+		<hr>
+
+		<h2>No Rekening : 7870901695</h2>
+		<h2>Atas nama JAYA MANDIRI INVESTAMA</h2>
+		<h2>Bank BCA</h2>
 	</div>
 	<div class="col-md-12">
 		<form action="" method="POST" enctype="multipart/form-data">
