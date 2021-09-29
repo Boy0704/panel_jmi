@@ -292,11 +292,35 @@ class App extends CI_Controller {
 		$this->load->view('v_index', $data);
     }
 
-    public function get_pegawai()
+    public function transfer_now($no_transaksi,$ke)
     {
-        $nip = $this->input->post('nip');
-        $nama = $this->db->get_where('pegawai', array('nip'=>$nip))->row()->nama;
-        echo $nama;
+        $this->db->where('no_transaksi', $no_transaksi);
+        $this->db->where('ke', $ke);
+        if ($this->db->get('transfer')->num_rows() > 0) {
+            // code...
+        } else {
+            $this->db->where('no_transaksi', $no_transaksi);
+            $this->db->where('ke', $ke);
+            $data = $this->db->get('jadwal_transfer')->row();
+
+            $insert = [
+                'no_transaksi'=> $data->no_transaksi,
+                'id_member'=> $data->id_member,
+                'keterangan'=> "transfer masuk",
+                'tanggal'=> date('Y-m-d'),
+                'jam'=> date('H:i:s'),
+                'jumlah' => $data->nominal,
+                'ke' => $data->ke,
+                'created_at' => get_waktu()
+            ];
+            $this->db->insert('transfer', $insert);
+            ?>
+            <script type="text/javascript">
+                alert("Data berhasil diupdate");
+                window.location="<?php echo base_url() ?>transfer/index/<?php echo $no_transaksi ?>";
+            </script>
+            <?php
+        }
     }
 
     

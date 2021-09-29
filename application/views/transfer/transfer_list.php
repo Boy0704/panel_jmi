@@ -1,7 +1,7 @@
 
         <div class="row" style="margin-bottom: 10px">
             <div class="col-md-4">
-                <?php echo anchor(site_url('transfer/create/'.$this->uri->segment(3)),'Create', 'class="btn btn-primary"'); ?>
+                <?php //echo anchor(site_url('transfer/create/'.$this->uri->segment(3)),'Create', 'class="btn btn-primary"'); ?>
             </div>
             <div class="col-md-4 text-center">
                 <div style="margin-top: 8px" id="message">
@@ -21,13 +21,9 @@
                 <th>No</th>
 		<th>No Transaksi</th>
 		<th>Member</th>
-		<th>Keterangan</th>
-		<th>Tanggal</th>
-		<th>Jam</th>
         <th>Jumlah</th>
+        <th>Jadwal</th>
 		<th>Pembayaran Ke</th>
-		<th>Created At</th>
-		<th>Updated At</th>
 		<th>Action</th>
             </tr>
             </thead>
@@ -35,7 +31,7 @@
                 <?php
             $start = 1;
             $this->db->where('no_transaksi', $this->uri->segment(3));
-            $transfer_data = $this->db->get('transfer');
+            $transfer_data = $this->db->get('jadwal_transfer');
             foreach ($transfer_data->result() as $transfer)
             {
                 ?>
@@ -43,19 +39,18 @@
 			<td width="80px"><?php echo $start ?></td>
 			<td><?php echo $transfer->no_transaksi ?></td>
 			<td><?php echo get_data('member','id_member',$transfer->id_member,'nama') ?></td>
-			<td><?php echo $transfer->keterangan ?></td>
-			<td><?php echo $transfer->tanggal ?></td>
-			<td><?php echo $transfer->jam ?></td>
-			<td><?php echo number_format($transfer->jumlah) ?></td>
+			<td><?php echo number_format($transfer->nominal) ?></td>
+            <td><?php echo $transfer->jadwal_transfer ?></td>
             <td><?php echo $transfer->ke ?></td>
-			<td><?php echo $transfer->created_at ?></td>
-			<td><?php echo $transfer->updated_at ?></td>
 			<td style="text-align:center" width="200px">
 				<?php 
-				// echo anchor(site_url('transfer/update/'.$transfer->id_transfer),'<span class="label label-info">Ubah</span>'); 
-				// echo ' | '; 
-				echo anchor(site_url('transfer/delete/'.$transfer->id_transfer),'<span class="label label-danger">Hapus</span>','onclick="javasciprt: return confirm(\'Are You Sure ?\')"'); 
-				?>
+                $this->db->where('no_transaksi', $transfer->no_transaksi);
+                $this->db->where('ke', $transfer->ke);
+                if ($this->db->get('transfer')->num_rows() > 0): ?>
+                    <span class="label label-success">Success</span>
+                <?php else: ?>
+                    <a href="app/transfer_now/<?php echo $transfer->no_transaksi.'/'.$transfer->ke ?>" onclick="javasciprt: return confirm('Are You Sure ?')" class="label label-info">Kirim</a>
+                <?php endif ?>
 			</td>
 		</tr>
                 <?php
