@@ -39,8 +39,9 @@
 					<td><?php echo $rw->konfirmasi ?></td>
 					<td><?php echo $rw->created_at ?></td>
 					<td>
+						<a href="app/hapus_investasi/<?php echo $rw->id_transaksi ?>" class="btn btn-xs btn-danger" onclick="javasciprt: return confirm('yakin akan hapus data ini ?')">Hapus</a>
 						<?php if ($rw->konfirmasi == 'y'): ?>
-							<a href="app/konfirmasi_inv/<?php echo $rw->id_transaksi ?>/t" class="btn btn-xs btn-danger">Batalkan Konfirmasi</a>
+							<a href="app/konfirmasi_inv/<?php echo $rw->id_transaksi ?>/t" class="btn btn-xs btn-warning">Batalkan Konfirmasi</a>
 						<?php else: ?>
 							<a href="app/konfirmasi_inv/<?php echo $rw->id_transaksi ?>/y" class="btn btn-xs btn-success">Konfirmasi</a>
 						<?php endif ?>

@@ -83,6 +83,18 @@ class App extends CI_Controller {
         <?php
     }
 
+    public function hapus_investasi($id_investasi)
+    {
+        $this->db->where('id_investasi', $id_investasi);
+        $this->db->delete('transaksi_investasi');
+        ?>
+        <script type="text/javascript">
+            alert("Data berhasil dihapus !");
+            window.location="<?php echo base_url() ?>app/investasi"
+        </script>
+        <?php
+    }
+
     public function investasi()
     {
         $data = array (
