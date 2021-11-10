@@ -335,6 +335,38 @@ class App extends CI_Controller {
         }
     }
 
+    public function transfer_hari_semua()
+    {
+        $this->db->where('jadwal_transfer', date('Y-m-d'));
+        foreach ($this->db->get('jadwal_transfer')->result() as $rw) {
+            $this->db->where('no_transaksi', $rw->no_transaksi);
+            $this->db->where('ke', $rw->ke);
+            if ($this->db->get('transfer')->num_rows() > 0) {
+                // code...
+            } else {
+
+                $insert = [
+                    'no_transaksi'=> $rw->no_transaksi,
+                    'id_member'=> $rw->id_member,
+                    'keterangan'=> "transfer masuk",
+                    'tanggal'=> date('Y-m-d'),
+                    'jam'=> date('H:i:s'),
+                    'jumlah' => $rw->nominal,
+                    'ke' => $rw->ke,
+                    'created_at' => get_waktu()
+                ];
+                $this->db->insert('transfer', $insert);
+            }
+        }
+        ?>
+        <script type="text/javascript">
+            alert("Data berhasil diupdate");
+            window.location="<?php echo base_url() ?>app";
+        </script>
+        <?php
+
+    }
+
     
 
 }
