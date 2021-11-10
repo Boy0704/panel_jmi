@@ -12,6 +12,17 @@ class App extends CI_Controller {
     public function topup_investasi($id_member)
     {
         if ($_POST) {
+
+            if ($_POST['jumlah_investasi'] == '' OR $_POST['jumlah_investasi'] == '0') {
+                ?>
+                <script type="text/javascript">
+                    WebAppInterface.showToast("Total transfer tidak boleh 0");
+                    WebAppInterface.redirect();
+                </script>
+                <?php
+                exit;
+            }
+
             $gambar = upload_gambar_biasa('bukti_tf_', 'image/bukti/', 'jpg|jpeg|png', 10000, 'bukti_transfer');
             if ($_FILES['bukti_transfer']['name'] != '') {
                 $_POST['bukti_transfer'] = $gambar;

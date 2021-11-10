@@ -42,10 +42,11 @@
 						<a href="app/hapus_investasi/<?php echo $rw->id_transaksi ?>" class="btn btn-xs btn-danger" onclick="javasciprt: return confirm('yakin akan hapus data ini ?')">Hapus</a>
 						<?php if ($rw->konfirmasi == 'y'): ?>
 							<a href="app/konfirmasi_inv/<?php echo $rw->id_transaksi ?>/t" class="btn btn-xs btn-warning">Batalkan Konfirmasi</a>
+							<a href="transfer/index/<?php echo $rw->no_transaksi ?>" class="btn btn-xs btn-info">Input Transfer</a>
 						<?php else: ?>
 							<a href="app/konfirmasi_inv/<?php echo $rw->id_transaksi ?>/y" class="btn btn-xs btn-success">Konfirmasi</a>
 						<?php endif ?>
-						<a href="transfer/index/<?php echo $rw->no_transaksi ?>" class="btn btn-xs btn-info">Input Transfer</a>
+						
 					</td>
 				</tr>
 				<?php $no++; endforeach ?>
