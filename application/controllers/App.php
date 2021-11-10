@@ -85,7 +85,7 @@ class App extends CI_Controller {
 
     public function hapus_investasi($id_investasi)
     {
-        $this->db->where('id_investasi', $id_investasi);
+        $this->db->where('id_transaksi', $id_investasi);
         $this->db->delete('transaksi_investasi');
         ?>
         <script type="text/javascript">
