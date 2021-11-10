@@ -22,6 +22,7 @@
 			<tbody>
 				<?php 
 				$no = 1;
+				$this->db->order_by('id_transaksi', 'desc');
 				foreach ($this->db->get('transaksi_investasi')->result() as $rw): ?>
 				<tr>
 					<td><?php echo $no ?></td>
