@@ -142,10 +142,17 @@ class App extends CI_Controller {
                 $jml_trf = ($dt_trans->jumlah_investasi - $dt_trans->kode_unik) * $persen;
                 $tgl1 = $dt_trans->tanggal_transfer;
                 $xx = 7;
+                $x_bln = 1;
                 $no = 1;
                 for ($i=1; $i <= $waktu ; $i++) { 
+
+                    if ($dt_trans->plan == 'mingguan') {
+                        $jadwal_transfer = date('Y-m-d', strtotime('+'.$xx.' days', strtotime($tgl1)));
+                    } elseif($dt_trans->plan == 'bulanan') {
+                        $jadwal_transfer = date('Y-m-d', strtotime('+'.$x_bln.' month', strtotime($tgl1)));
+                    }
                     
-                    $jadwal_transfer = date('Y-m-d', strtotime('+'.$xx.' days', strtotime($tgl1)));
+                    
                     // log_data($no.' '.$jml_trf.' '.$tgl2);
 
                     $this->db->insert('jadwal_transfer', array(
@@ -158,7 +165,12 @@ class App extends CI_Controller {
                         'ke' => $no
                     ));
 
-                    $xx = $xx+7;
+                    if ($dt_trans->plan == 'mingguan') {
+                        $xx = $xx+7;
+                    } elseif($dt_trans->plan == 'bulanan') {
+                        $x_bln = $x_bln+1;
+                    }
+                    
                     $no++;
                 }
             }
